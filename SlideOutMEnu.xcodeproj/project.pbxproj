@@ -12,6 +12,7 @@
 		B67EF0AF2171FE9B00703FD6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B67EF0AD2171FE9B00703FD6 /* Main.storyboard */; };
 		B67EF0B12171FE9C00703FD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B67EF0B02171FE9C00703FD6 /* Assets.xcassets */; };
 		B67EF0B42171FE9C00703FD6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B67EF0B22171FE9C00703FD6 /* LaunchScreen.storyboard */; };
+		B67EF0BD2172304600703FD6 /* SliderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67EF0BC2172304600703FD6 /* SliderController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		B67EF0B02171FE9C00703FD6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B67EF0B32171FE9C00703FD6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B67EF0B52171FE9C00703FD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B67EF0BC2172304600703FD6 /* SliderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SliderController.swift; path = ../../../SlideOutMenu/SlideOutMEnu/Controllers/SliderController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 		B67EF0A82171FE9B00703FD6 /* SlideOutMEnu */ = {
 			isa = PBXGroup;
 			children = (
+				B67EF0BB2172300300703FD6 /* Controllers */,
 				B67EF0A92171FE9B00703FD6 /* AppDelegate.swift */,
 				B67EF0AB2171FE9B00703FD6 /* ViewController.swift */,
 				B67EF0AD2171FE9B00703FD6 /* Main.storyboard */,
@@ -62,6 +65,14 @@
 				B67EF0B52171FE9C00703FD6 /* Info.plist */,
 			);
 			path = SlideOutMEnu;
+			sourceTree = "<group>";
+		};
+		B67EF0BB2172300300703FD6 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B67EF0BC2172304600703FD6 /* SliderController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,6 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B67EF0AC2171FE9B00703FD6 /* ViewController.swift in Sources */,
+				B67EF0BD2172304600703FD6 /* SliderController.swift in Sources */,
 				B67EF0AA2171FE9B00703FD6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

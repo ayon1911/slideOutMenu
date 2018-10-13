@@ -26,8 +26,11 @@ class ViewController: UITableViewController {
         return cell
     }
     
-     @objc func handleOpen() {
-        print("Opening menu")
+    @objc func handleOpen() {
+        let vc = SliderController()
+        vc.view.frame = CGRect(x: 0, y: 0, width: 300, height: self.view.frame.height)
+        let mainWindow = UIApplication.shared.keyWindow
+        mainWindow?.addSubview(vc.view)
     }
     @objc func handleHide() {
         print("Hiding menu")
