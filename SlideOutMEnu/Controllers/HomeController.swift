@@ -11,18 +11,18 @@ import UIKit
 class HomeController: UITableViewController {
     //variables
     let sliderVC = SliderController()
+    let darkView = UIView()
     fileprivate let menuWidth: CGFloat = 300
     fileprivate let velocityThreshold: CGFloat = 500
     fileprivate var sliderOpened = false
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.backgroundColor = .red
         setupNavigation()
         setupSliderController()
-        
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
-        view.addGestureRecognizer(panGesture)
+        setupPanGesture()
+        setupDarkCoverView()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -38,13 +38,13 @@ class HomeController: UITableViewController {
     @objc func handleOpen() {
         //sliding out---
         sliderOpened = true
-        performAnimation(trasnform: CGAffineTransform(translationX: self.menuWidth, y: 0))
+        performAnimation(transform: CGAffineTransform(translationX: self.menuWidth, y: 0))
     }
     
     @objc func handleHide() {
         //sliding in--
         sliderOpened = false
-        performAnimation(trasnform: .identity)
+        performAnimation(transform: .identity)
     }
     
     @objc func handlePan(gesture: UIPanGestureRecognizer) {
@@ -59,12 +59,24 @@ class HomeController: UITableViewController {
             let transformX = CGAffineTransform(translationX: varingX, y: 0)
             sliderVC.view.transform = transformX
             navigationController?.view.transform = transformX
+            darkView.transform = transformX
+            darkView.alpha = varingX / menuWidth
         } else if gesture.state == .ended {
             handleEnded(gesture: gesture)
         }
     }
     
     //MARK:- fileprivate Functions
+    fileprivate func setupDarkCoverView() {
+        darkView.alpha = 0
+        darkView.backgroundColor = UIColor(white: 0, alpha: 0.8)
+        darkView.isUserInteractionEnabled = false
+        let mainWindow = UIApplication.shared.keyWindow
+        darkView.frame = mainWindow?.frame ?? .zero
+        mainWindow?.addSubview(darkView)
+        
+    }
+    
     fileprivate func handleEnded(gesture: UIPanGestureRecognizer) {
         let traslation = gesture.translation(in: view)
         let velocity = gesture.velocity(in: view)
@@ -91,6 +103,11 @@ class HomeController: UITableViewController {
         }
     }
     
+    fileprivate func setupPanGesture() {
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
+        view.addGestureRecognizer(panGesture)
+    }
+    
     fileprivate func setupNavigation() {
         // Do any additional setup after loading the view, typically from a nib.
         navigationItem.title = "Home"
@@ -105,10 +122,12 @@ class HomeController: UITableViewController {
         addChild(sliderVC)
     }
     
-    fileprivate func performAnimation(trasnform: CGAffineTransform) {
+    fileprivate func performAnimation(transform: CGAffineTransform) {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            self.sliderVC.view.transform = trasnform
-            self.navigationController?.view.transform = trasnform
+            self.sliderVC.view.transform = transform
+            self.navigationController?.view.transform = transform
+            self.darkView.transform = transform
+            self.darkView.alpha = transform == .identity ? 0 : 1
         })
     }
 }
