@@ -21,7 +21,7 @@ class HomeController: UITableViewController {
         tableView.backgroundColor = .red
         setupNavigation()
         setupSliderController()
-        setupPanGesture()
+//        setupPanGesture()
         setupDarkCoverView()
     }
     
