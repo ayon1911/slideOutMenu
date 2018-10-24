@@ -33,12 +33,12 @@ class HomeController: UITableViewController {
     //MARK:- controller handler
     @objc func handleOpen() {
         //sliding out---
-        sliderOpened = true
+        (UIApplication.shared.keyWindow?.rootViewController as? BaseSliderVC)?.openSlider()
     }
     
     @objc func handleHide() {
         //sliding in--
-        sliderOpened = false
+        (UIApplication.shared.keyWindow?.rootViewController as? BaseSliderVC)?.closeSlider()
 
     }
     

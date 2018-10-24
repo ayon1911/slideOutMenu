@@ -10,11 +10,10 @@ import UIKit
 
 class BaseSliderVC: UIViewController {
     //MARK:- variables
-    var controllerToRemove: UIViewController?
+    var rightViewController: UIViewController = UINavigationController(rootViewController: HomeController())
 
     let redView: UIView = {
         let v = UIView()
-        v.backgroundColor = .red
         v.translatesAutoresizingMaskIntoConstraints = false
         return v
     }()
@@ -43,7 +42,7 @@ class BaseSliderVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .yellow
+        view.backgroundColor = .white
 
         setupViews()
         
@@ -111,34 +110,38 @@ class BaseSliderVC: UIViewController {
     }
     
     func didSelectMenuItem(indexPath: IndexPath) {
-        
         removeViewsWithControllers()
+        closeSlider()
         
         switch indexPath.row {
         case 0:
-            print("Show Home screen")
+            rightViewController = UINavigationController(rootViewController: HomeController())
+            
         case 1:
-            let listController = ListVC()
-            redView.addSubview(listController.view)
-            addChild(listController)
-            controllerToRemove = listController
+            rightViewController = UINavigationController(rootViewController: ListVC())
+            
         case 2:
-            let bookmarkController = BookmarksVC()
-            redView.addSubview(bookmarkController.view)
-            addChild(bookmarkController)
-            controllerToRemove = bookmarkController
+            rightViewController = BookmarksVC()
         default:
-            print("Bla")
+            let tabBarController = UITabBarController()
+            let momentsController = UIViewController()
+            momentsController.navigationItem.title = "Moments"
+            let navController = UINavigationController(rootViewController: momentsController)
+            navController.tabBarItem.title = "Moments"
+            momentsController.view.backgroundColor = .orange
+            tabBarController.viewControllers = [navController]
+            rightViewController = tabBarController
         }
+        redView.addSubview(rightViewController.view)
+        addChild(rightViewController)
         
         redView.bringSubviewToFront(darkView)
-        closeSlider()
     }
     
     
     fileprivate func removeViewsWithControllers() {
-        controllerToRemove?.view.removeFromSuperview()
-        controllerToRemove?.removeFromParent()
+        rightViewController.view.removeFromSuperview()
+        rightViewController.removeFromParent()
     }
     
     fileprivate func performAnimations() {
@@ -172,11 +175,9 @@ class BaseSliderVC: UIViewController {
     }
     
     fileprivate func setupViewControllers() {
-//        let homeVC = HomeController()
         let sliderVC = SliderController()
-        controllerToRemove = HomeController()
         
-        let homeView = controllerToRemove!.view!
+        let homeView = rightViewController.view!
         let sliderView = sliderVC.view!
         
         homeView.translatesAutoresizingMaskIntoConstraints = false
@@ -202,7 +203,7 @@ class BaseSliderVC: UIViewController {
             darkView.bottomAnchor.constraint(equalTo: redView.bottomAnchor),
             darkView.trailingAnchor.constraint(equalTo: redView.trailingAnchor)
             ])
-        addChild(controllerToRemove!)
+        addChild(rightViewController)
         addChild(sliderVC)
     }
 }
