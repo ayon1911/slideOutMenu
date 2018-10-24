@@ -17,7 +17,7 @@ class SliderController: UITableViewController {
     
     //MARK:- variables
     let menuItems = [
-        MenuItem(icon: #imageLiteral(resourceName: "profile-1"), title: "Profile"),
+        MenuItem(icon: #imageLiteral(resourceName: "profile-1"), title: "Home"),
         MenuItem(icon: #imageLiteral(resourceName: "lists"), title: "List"),
         MenuItem(icon: #imageLiteral(resourceName: "bookmarks"), title: "Bookmark"),
         MenuItem(icon: #imageLiteral(resourceName: "moments"), title: "Moments")
@@ -52,5 +52,14 @@ class SliderController: UITableViewController {
         cell.iconImageView.image = menuItem.icon
         cell.titleLabel.text = menuItem.title
         return cell
+    }
+}
+
+//MARK:- tableview extention
+extension SliderController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let slidingController = UIApplication.shared.keyWindow?.rootViewController as? BaseSliderVC
+        slidingController?.closeSlider()
+        slidingController?.didSelectMenuItem(indexPath: indexPath)
     }
 }

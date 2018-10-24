@@ -10,6 +10,8 @@ import UIKit
 
 class BaseSliderVC: UIViewController {
     //MARK:- variables
+    var controllerToRemove: UIViewController?
+
     let redView: UIView = {
         let v = UIView()
         v.backgroundColor = .red
@@ -96,16 +98,47 @@ class BaseSliderVC: UIViewController {
     }
     
     //MARK:- open, close and perform slider
-    fileprivate func openSlider() {
+    func openSlider() {
         isSliderOpen = true
         redViewLeadingConstraint.constant = menuWidth
         performAnimations()
     }
     
-    fileprivate func closeSlider() {
+    func closeSlider() {
         isSliderOpen = false
         redViewLeadingConstraint.constant = 0
         performAnimations()
+    }
+    
+    func didSelectMenuItem(indexPath: IndexPath) {
+        
+        removeViewsWithControllers()
+        
+        switch indexPath.row {
+        case 0:
+            print("Show Home screen")
+        case 1:
+            let listController = ListVC()
+            redView.addSubview(listController.view)
+            addChild(listController)
+            controllerToRemove = listController
+        case 2:
+            let bookmarkController = BookmarksVC()
+            redView.addSubview(bookmarkController.view)
+            addChild(bookmarkController)
+            controllerToRemove = bookmarkController
+        default:
+            print("Bla")
+        }
+        
+        redView.bringSubviewToFront(darkView)
+        closeSlider()
+    }
+    
+    
+    fileprivate func removeViewsWithControllers() {
+        controllerToRemove?.view.removeFromSuperview()
+        controllerToRemove?.removeFromParent()
     }
     
     fileprivate func performAnimations() {
@@ -139,10 +172,11 @@ class BaseSliderVC: UIViewController {
     }
     
     fileprivate func setupViewControllers() {
-        let homeVC = HomeController()
+//        let homeVC = HomeController()
         let sliderVC = SliderController()
+        controllerToRemove = HomeController()
         
-        let homeView = homeVC.view!
+        let homeView = controllerToRemove!.view!
         let sliderView = sliderVC.view!
         
         homeView.translatesAutoresizingMaskIntoConstraints = false
@@ -168,7 +202,7 @@ class BaseSliderVC: UIViewController {
             darkView.bottomAnchor.constraint(equalTo: redView.bottomAnchor),
             darkView.trailingAnchor.constraint(equalTo: redView.trailingAnchor)
             ])
-        addChild(homeVC)
+        addChild(controllerToRemove!)
         addChild(sliderVC)
     }
 }
