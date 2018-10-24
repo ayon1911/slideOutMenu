@@ -16,6 +16,8 @@
 		B6F4DC88217CF989001F0867 /* BaseSliderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F4DC87217CF989001F0867 /* BaseSliderVC.swift */; };
 		B6F4DC8B21807BAA001F0867 /* CustomSliderHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F4DC8A21807BAA001F0867 /* CustomSliderHeaderView.swift */; };
 		B6F4DC8D21807F3C001F0867 /* CustomSpaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F4DC8C21807F3C001F0867 /* CustomSpaceView.swift */; };
+		B6F4DC8F2180831E001F0867 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F4DC8E2180831E001F0867 /* ProfileImageView.swift */; };
+		B6F4DC91218089CD001F0867 /* MenuItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F4DC90218089CD001F0867 /* MenuItemCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		B6F4DC87217CF989001F0867 /* BaseSliderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSliderVC.swift; sourceTree = "<group>"; };
 		B6F4DC8A21807BAA001F0867 /* CustomSliderHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSliderHeaderView.swift; sourceTree = "<group>"; };
 		B6F4DC8C21807F3C001F0867 /* CustomSpaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSpaceView.swift; sourceTree = "<group>"; };
+		B6F4DC8E2180831E001F0867 /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
+		B6F4DC90218089CD001F0867 /* MenuItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +100,8 @@
 			children = (
 				B6F4DC8A21807BAA001F0867 /* CustomSliderHeaderView.swift */,
 				B6F4DC8C21807F3C001F0867 /* CustomSpaceView.swift */,
+				B6F4DC8E2180831E001F0867 /* ProfileImageView.swift */,
+				B6F4DC90218089CD001F0867 /* MenuItemCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -172,6 +178,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6F4DC8D21807F3C001F0867 /* CustomSpaceView.swift in Sources */,
+				B6F4DC91218089CD001F0867 /* MenuItemCell.swift in Sources */,
+				B6F4DC8F2180831E001F0867 /* ProfileImageView.swift in Sources */,
 				B6F4DC88217CF989001F0867 /* BaseSliderVC.swift in Sources */,
 				B67EF0AC2171FE9B00703FD6 /* HomeController.swift in Sources */,
 				B67EF0BD2172304600703FD6 /* SliderController.swift in Sources */,
