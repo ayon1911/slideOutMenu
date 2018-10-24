@@ -14,6 +14,15 @@ class SliderController: UITableViewController {
         super.viewDidLoad()
         tableView.backgroundColor = .blue
     }
+    //MARK:- header view
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let customSliderHeaderView = CustomSliderHeaderView()
+        return customSliderHeaderView
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 200
+    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
