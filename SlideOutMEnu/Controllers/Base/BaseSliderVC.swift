@@ -12,13 +12,13 @@ class BaseSliderVC: UIViewController {
     //MARK:- variables
     var rightViewController: UIViewController = UINavigationController(rootViewController: HomeController())
 
-    let redView: UIView = {
+    let rightView: UIView = {
         let v = UIView()
         v.translatesAutoresizingMaskIntoConstraints = false
         return v
     }()
     
-    let blueView: UIView = {
+    let leftView: UIView = {
         let v = UIView()
         v.backgroundColor = .blue
         v.translatesAutoresizingMaskIntoConstraints = false
@@ -37,6 +37,7 @@ class BaseSliderVC: UIViewController {
     fileprivate let velocityThreshold: CGFloat = 500
     fileprivate var isSliderOpen = false
     var redViewLeadingConstraint: NSLayoutConstraint!
+    var redViewTrailingConstraint: NSLayoutConstraint!
     
     
     override func viewDidLoad() {
@@ -48,9 +49,16 @@ class BaseSliderVC: UIViewController {
         
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
         view.addGestureRecognizer(panGesture)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapDismiss))
+        darkView.addGestureRecognizer(tapGesture)
     }
     
     //MARK:- handler
+    @objc func handleTapDismiss(gesture: UITapGestureRecognizer) {
+        closeSlider()
+    }
+    
     @objc func handlePan(gesture: UIPanGestureRecognizer) {
         let traslation = gesture.translation(in: view)
         var x = traslation.x
@@ -60,6 +68,7 @@ class BaseSliderVC: UIViewController {
         x = max(0, x)
         
         redViewLeadingConstraint.constant = x
+        redViewTrailingConstraint.constant = x
         darkView.alpha = x / menuWidth
         
         if gesture.state == .ended {
@@ -100,12 +109,14 @@ class BaseSliderVC: UIViewController {
     func openSlider() {
         isSliderOpen = true
         redViewLeadingConstraint.constant = menuWidth
+        redViewTrailingConstraint.constant = menuWidth
         performAnimations()
     }
     
     func closeSlider() {
         isSliderOpen = false
         redViewLeadingConstraint.constant = 0
+        redViewTrailingConstraint.constant = 0
         performAnimations()
     }
     
@@ -132,12 +143,11 @@ class BaseSliderVC: UIViewController {
             tabBarController.viewControllers = [navController]
             rightViewController = tabBarController
         }
-        redView.addSubview(rightViewController.view)
+        rightView.addSubview(rightViewController.view)
         addChild(rightViewController)
         
-        redView.bringSubviewToFront(darkView)
+        rightView.bringSubviewToFront(darkView)
     }
-    
     
     fileprivate func removeViewsWithControllers() {
         rightViewController.view.removeFromSuperview()
@@ -151,26 +161,25 @@ class BaseSliderVC: UIViewController {
         }, completion: nil)
     }
     
-
     //MARK:- setupViews and Controllers
     fileprivate func setupViews() {
         //use auto layout
-        view.addSubview(redView)
-        view.addSubview(blueView)
+        view.addSubview(rightView)
+        view.addSubview(leftView)
         
         NSLayoutConstraint.activate([
-            redView.topAnchor.constraint(equalTo: view.topAnchor),
-            redView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            redView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            rightView.topAnchor.constraint(equalTo: view.topAnchor),
+            rightView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            blueView.topAnchor.constraint(equalTo: view.topAnchor),
-            blueView.trailingAnchor.constraint(equalTo: redView.safeAreaLayoutGuide.leadingAnchor),
-            blueView.widthAnchor.constraint(equalToConstant: menuWidth),
-            blueView.bottomAnchor.constraint(equalTo: redView.bottomAnchor)
+            leftView.topAnchor.constraint(equalTo: view.topAnchor),
+            leftView.trailingAnchor.constraint(equalTo: rightView.leadingAnchor),
+            leftView.widthAnchor.constraint(equalToConstant: menuWidth),
+            leftView.bottomAnchor.constraint(equalTo: rightView.bottomAnchor)
             ])
-        self.redViewLeadingConstraint = redView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0)
+        redViewLeadingConstraint = rightView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0)
+        redViewTrailingConstraint = rightView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0)
         redViewLeadingConstraint.isActive = true
-        
+        redViewTrailingConstraint.isActive = true
         setupViewControllers()
     }
     
@@ -183,25 +192,25 @@ class BaseSliderVC: UIViewController {
         homeView.translatesAutoresizingMaskIntoConstraints = false
         sliderView.translatesAutoresizingMaskIntoConstraints = false
         
-        redView.addSubview(homeView)
-        redView.addSubview(darkView)
-        blueView.addSubview(sliderView)
+        rightView.addSubview(homeView)
+        rightView.addSubview(darkView)
+        leftView.addSubview(sliderView)
         
         NSLayoutConstraint.activate([
-            homeView.topAnchor.constraint(equalTo: redView.topAnchor),
-            homeView.leadingAnchor.constraint(equalTo: redView.leadingAnchor),
-            homeView.bottomAnchor.constraint(equalTo: redView.bottomAnchor),
-            homeView.trailingAnchor.constraint(equalTo: redView.trailingAnchor),
+            homeView.topAnchor.constraint(equalTo: rightView.topAnchor),
+            homeView.leadingAnchor.constraint(equalTo: rightView.leadingAnchor),
+            homeView.bottomAnchor.constraint(equalTo: rightView.bottomAnchor),
+            homeView.trailingAnchor.constraint(equalTo: rightView.trailingAnchor),
             
-            sliderView.topAnchor.constraint(equalTo: blueView.topAnchor),
-            sliderView.leadingAnchor.constraint(equalTo: blueView.leadingAnchor),
-            sliderView.bottomAnchor.constraint(equalTo: blueView.bottomAnchor),
-            sliderView.trailingAnchor.constraint(equalTo: blueView.trailingAnchor),
+            sliderView.topAnchor.constraint(equalTo: leftView.topAnchor),
+            sliderView.leadingAnchor.constraint(equalTo: leftView.leadingAnchor),
+            sliderView.bottomAnchor.constraint(equalTo: leftView.bottomAnchor),
+            sliderView.trailingAnchor.constraint(equalTo: leftView.trailingAnchor),
             
-            darkView.topAnchor.constraint(equalTo: redView.topAnchor),
-            darkView.leadingAnchor.constraint(equalTo: redView.leadingAnchor),
-            darkView.bottomAnchor.constraint(equalTo: redView.bottomAnchor),
-            darkView.trailingAnchor.constraint(equalTo: redView.trailingAnchor)
+            darkView.topAnchor.constraint(equalTo: rightView.topAnchor),
+            darkView.leadingAnchor.constraint(equalTo: rightView.leadingAnchor),
+            darkView.bottomAnchor.constraint(equalTo: rightView.bottomAnchor),
+            darkView.trailingAnchor.constraint(equalTo: rightView.trailingAnchor)
             ])
         addChild(rightViewController)
         addChild(sliderVC)
