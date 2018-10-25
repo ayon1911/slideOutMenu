@@ -20,6 +20,11 @@
 		B6F4DC91218089CD001F0867 /* MenuItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F4DC90218089CD001F0867 /* MenuItemCell.swift */; };
 		B6F4DC932180C5DD001F0867 /* ListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F4DC922180C5DD001F0867 /* ListVC.swift */; };
 		B6F4DC952180C885001F0867 /* BookmarksVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F4DC942180C885001F0867 /* BookmarksVC.swift */; };
+		B6F4DC972181B119001F0867 /* ChatMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F4DC962181B119001F0867 /* ChatMenuController.swift */; };
+		B6F4DC992181B4FC001F0867 /* ChatMenuCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F4DC982181B4FC001F0867 /* ChatMenuCells.swift */; };
+		B6F4DC9B2181E0F1001F0867 /* ChatMenuContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F4DC9A2181E0F1001F0867 /* ChatMenuContainerController.swift */; };
+		B6F4DCBC2181EE58001F0867 /* Extensions+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F4DCBB2181EE58001F0867 /* Extensions+UIView.swift */; };
+		B6F4DCBE21820F75001F0867 /* SearchContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F4DCBD21820F75001F0867 /* SearchContainerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +43,11 @@
 		B6F4DC90218089CD001F0867 /* MenuItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemCell.swift; sourceTree = "<group>"; };
 		B6F4DC922180C5DD001F0867 /* ListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListVC.swift; sourceTree = "<group>"; };
 		B6F4DC942180C885001F0867 /* BookmarksVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksVC.swift; sourceTree = "<group>"; };
+		B6F4DC962181B119001F0867 /* ChatMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMenuController.swift; sourceTree = "<group>"; };
+		B6F4DC982181B4FC001F0867 /* ChatMenuCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMenuCells.swift; sourceTree = "<group>"; };
+		B6F4DC9A2181E0F1001F0867 /* ChatMenuContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMenuContainerController.swift; sourceTree = "<group>"; };
+		B6F4DCBB2181EE58001F0867 /* Extensions+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UIView.swift"; sourceTree = "<group>"; };
+		B6F4DCBD21820F75001F0867 /* SearchContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchContainerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +80,7 @@
 		B67EF0A82171FE9B00703FD6 /* SlideOutMEnu */ = {
 			isa = PBXGroup;
 			children = (
+				B6F4DCBA2181EE2E001F0867 /* Extensions */,
 				B6F4DC8921807B8B001F0867 /* Views */,
 				B67EF0BB2172300300703FD6 /* Controllers */,
 				B67EF0A92171FE9B00703FD6 /* AppDelegate.swift */,
@@ -89,6 +100,8 @@
 				B67EF0BC2172304600703FD6 /* SliderController.swift */,
 				B6F4DC922180C5DD001F0867 /* ListVC.swift */,
 				B6F4DC942180C885001F0867 /* BookmarksVC.swift */,
+				B6F4DC962181B119001F0867 /* ChatMenuController.swift */,
+				B6F4DC9A2181E0F1001F0867 /* ChatMenuContainerController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -108,8 +121,18 @@
 				B6F4DC8C21807F3C001F0867 /* CustomSpaceView.swift */,
 				B6F4DC8E2180831E001F0867 /* ProfileImageView.swift */,
 				B6F4DC90218089CD001F0867 /* MenuItemCell.swift */,
+				B6F4DC982181B4FC001F0867 /* ChatMenuCells.swift */,
+				B6F4DCBD21820F75001F0867 /* SearchContainerView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		B6F4DCBA2181EE2E001F0867 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B6F4DCBB2181EE58001F0867 /* Extensions+UIView.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,15 +206,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6F4DCBC2181EE58001F0867 /* Extensions+UIView.swift in Sources */,
 				B6F4DC952180C885001F0867 /* BookmarksVC.swift in Sources */,
 				B6F4DC8D21807F3C001F0867 /* CustomSpaceView.swift in Sources */,
 				B6F4DC91218089CD001F0867 /* MenuItemCell.swift in Sources */,
 				B6F4DC8F2180831E001F0867 /* ProfileImageView.swift in Sources */,
 				B6F4DC932180C5DD001F0867 /* ListVC.swift in Sources */,
+				B6F4DC9B2181E0F1001F0867 /* ChatMenuContainerController.swift in Sources */,
 				B6F4DC88217CF989001F0867 /* BaseSliderVC.swift in Sources */,
 				B67EF0AC2171FE9B00703FD6 /* HomeController.swift in Sources */,
 				B67EF0BD2172304600703FD6 /* SliderController.swift in Sources */,
 				B6F4DC8B21807BAA001F0867 /* CustomSliderHeaderView.swift in Sources */,
+				B6F4DCBE21820F75001F0867 /* SearchContainerView.swift in Sources */,
+				B6F4DC972181B119001F0867 /* ChatMenuController.swift in Sources */,
+				B6F4DC992181B4FC001F0867 /* ChatMenuCells.swift in Sources */,
 				B67EF0AA2171FE9B00703FD6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -44,10 +44,23 @@ class HomeController: UITableViewController {
     
     //MARK:- fileprivate Functions
     fileprivate func setupNavigation() {
-        // Do any additional setup after loading the view, typically from a nib.
         navigationItem.title = "Home"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Open", style: .plain, target: self, action: #selector(handleOpen))
+        setupCircularNavButton()
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Hide", style: .plain, target: self, action: #selector(handleHide))
+    }
+    
+    fileprivate func setupCircularNavButton() {
+        let img = #imageLiteral(resourceName: "profile").withRenderingMode(.alwaysOriginal)
+        let customView = UIButton(type: .system)
+        customView.setImage(img, for: .normal)
+        customView.layer.cornerRadius = 20
+        customView.clipsToBounds = true
+        customView.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        customView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        let barButtonItem = UIBarButtonItem(customView: customView)
+        customView.addTarget(self, action: #selector(handleOpen), for: .touchUpInside)
+        customView.imageView?.contentMode = .scaleAspectFit
+        navigationItem.leftBarButtonItem = barButtonItem
     }
     
     fileprivate func setupSliderController() {

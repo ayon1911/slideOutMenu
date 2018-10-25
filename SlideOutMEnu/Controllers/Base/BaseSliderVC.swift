@@ -11,6 +11,7 @@ import UIKit
 class BaseSliderVC: UIViewController {
     //MARK:- variables
     var rightViewController: UIViewController = UINavigationController(rootViewController: HomeController())
+    let sliderVC = ChatMenuContainerController()
 
     let rightView: UIView = {
         let v = UIView()
@@ -111,6 +112,7 @@ class BaseSliderVC: UIViewController {
         redViewLeadingConstraint.constant = menuWidth
         redViewTrailingConstraint.constant = menuWidth
         performAnimations()
+        setNeedsStatusBarAppearanceUpdate()
     }
     
     func closeSlider() {
@@ -118,6 +120,11 @@ class BaseSliderVC: UIViewController {
         redViewLeadingConstraint.constant = 0
         redViewTrailingConstraint.constant = 0
         performAnimations()
+        setNeedsStatusBarAppearanceUpdate()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return isSliderOpen ?.lightContent : .default
     }
     
     func didSelectMenuItem(indexPath: IndexPath) {
@@ -184,7 +191,6 @@ class BaseSliderVC: UIViewController {
     }
     
     fileprivate func setupViewControllers() {
-        let sliderVC = SliderController()
         
         let homeView = rightViewController.view!
         let sliderView = sliderVC.view!
